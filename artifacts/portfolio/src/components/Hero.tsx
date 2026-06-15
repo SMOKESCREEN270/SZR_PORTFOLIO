@@ -4,9 +4,13 @@ import Particles from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
 import CountUp from "react-countup";
-import { ArrowRight, Terminal } from "lucide-react";
+import { ArrowRight, Terminal, Download } from "lucide-react";
 
-export function Hero() {
+interface Props {
+  onOpenCVModal: () => void;
+}
+
+export function Hero({ onOpenCVModal }: Props) {
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
   }, []);
@@ -82,6 +86,15 @@ export function Hero() {
                 </span>
               </a>
               
+              <button
+                onClick={onOpenCVModal}
+                className="flex items-center gap-2 px-8 py-4 border border-cyan-400/50 text-cyan-400 font-semibold rounded-full hover:bg-cyan-400 hover:text-black transition-all duration-200 hover:shadow-[0_0_24px_rgba(34,211,238,0.35)]"
+                data-testid="button-hero-download-cv"
+              >
+                <Download size={18} />
+                Download CV
+              </button>
+
               <a 
                 href="#contact" 
                 className="px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/5 transition-colors"

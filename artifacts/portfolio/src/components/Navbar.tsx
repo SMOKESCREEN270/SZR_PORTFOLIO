@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 
-export function Navbar() {
+interface Props {
+  onOpenCVModal: () => void;
+}
+
+export function Navbar({ onOpenCVModal }: Props) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -50,6 +54,17 @@ export function Navbar() {
             ))}
           </nav>
 
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={onOpenCVModal}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyan-400/50 text-cyan-400 text-sm font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-200 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]"
+              data-testid="button-download-cv"
+            >
+              <Download size={15} />
+              Download CV
+            </button>
+          </div>
+
           <button
             className="md:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -60,7 +75,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
           className="md:hidden absolute top-20 left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/10 py-4 px-6"
@@ -78,6 +92,14 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); onOpenCVModal(); }}
+              className="flex items-center gap-2 text-cyan-400 font-semibold text-lg"
+              data-testid="button-download-cv-mobile"
+            >
+              <Download size={18} />
+              Download CV
+            </button>
           </div>
         </motion.div>
       )}
