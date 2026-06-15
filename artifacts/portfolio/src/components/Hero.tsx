@@ -101,9 +101,9 @@ export function Hero() {
             <div className="aspect-square rounded-full relative p-2 overflow-hidden glass border-cyan-500/20">
               <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-transparent animate-pulse rounded-full" />
               <img 
-                src="/avatar.png" 
+                src="/zaid.png" 
                 alt="Shaikh Zaid Rahman" 
-                className="w-full h-full object-cover rounded-full mix-blend-luminosity opacity-80"
+                className="w-full h-full object-cover rounded-full"
               />
             </div>
             

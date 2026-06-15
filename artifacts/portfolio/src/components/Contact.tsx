@@ -46,12 +46,12 @@ export function Contact() {
                 </div>
               </a>
               
-              <a href="tel:6290575310" className="flex items-center gap-4 text-white/80 hover:text-cyan-400 transition-colors group p-4 glass rounded-xl">
+              <a href="https://wa.me/916290575310" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-white/80 hover:text-cyan-400 transition-colors group p-4 glass rounded-xl">
                 <div className="w-12 h-12 bg-cyan-500/10 rounded-full flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
                   <Phone size={20} />
                 </div>
                 <div>
-                  <div className="text-sm text-white/50 mb-1">Comm Line</div>
+                  <div className="text-sm text-white/50 mb-1">WhatsApp</div>
                   <div className="font-medium">+91 6290575310</div>
                 </div>
               </a>
