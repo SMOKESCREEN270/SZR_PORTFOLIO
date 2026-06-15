@@ -1,0 +1,26 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "7YJrC3pAjI5De1bOjLVOP"
+uri = "file://artifacts/portfolio/public/avatar.png"
+type = "image"
+title = "Futuristic AI developer avatar"
+
+[[generated]]
+id = "_4lLXigAthqmgSnqhggJ1"
+uri = "file://artifacts/portfolio/public/codecure.png"
+type = "image"
+title = "Medical AI interface"
+
+[[generated]]
+id = "jY7w78j7kcxG7rvgrW2i9"
+uri = "file://artifacts/portfolio/public/pulseiq.png"
+type = "image"
+title = "Agricultural AI analysis"
+
+[[generated]]
+id = "Q2Ym3PFcSAO0qxsRsDtzQ"
+uri = "file://artifacts/portfolio/public/promptwars.png"
+type = "image"
+title = "Prompt engineering code"

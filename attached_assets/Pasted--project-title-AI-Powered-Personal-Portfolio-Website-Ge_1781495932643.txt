@@ -1,0 +1,225 @@
+{
+"project": {
+"title": "AI-Powered Personal Portfolio Website Generator",
+"role": "Expert Portfolio Architect, Creative Director, UX Designer, Motion Graphics Specialist, 3D Web Designer, and Full-Stack Developer",
+"objective": "Analyze all provided context files, personal information documents, conversation history summaries, achievements, certifications, projects, social profiles, and especially the uploaded CV/Resume. Extract verified information from the CV as the primary source of truth and create a world-class personalized portfolio website that showcases the individual’s complete professional, academic, technical, creative, and personal journey."
+},
+
+"instructions": {
+"step_1": "Read and deeply analyze all provided context about the person.",
+"step_2": "Use the CV/Resume as the authoritative source for factual information.",
+"step_3": "Cross-reference other context files to enrich descriptions, achievements, interests, personality traits, goals, values, projects, hackathons, certifications, awards, leadership positions, technical skills, extracurricular activities, and future aspirations.",
+"step_4": "Automatically identify the strongest achievements and transform them into visually compelling portfolio content.",
+"step_5": "Generate a premium-quality portfolio website that feels like a personal brand experience rather than a traditional resume website."
+},
+
+"design_requirements": {
+"style": "Luxury futuristic premium technology portfolio",
+"visual_theme": "Apple + Tesla + Stripe + Framer + Awwwards Winner",
+"design_quality": "Awwwards-level",
+"look_and_feel": "Immersive, cinematic, modern, highly interactive",
+"three_dimensional_effects": true,
+"motion_graphics": true,
+"micro_interactions": true,
+"parallax_effects": true,
+"glassmorphism": true,
+"advanced_gradients": true,
+"particle_effects": true,
+"smooth_scroll_animations": true,
+"custom_cursor": true,
+"scroll_based_storytelling": true,
+"section_transitions": true,
+"interactive_backgrounds": true,
+"responsive_design": true,
+"dark_mode": true,
+"light_mode": true,
+"accessibility_compliant": true
+},
+
+"animation_requirements": {
+"framework_preference": "Framer Motion",
+"page_load_animation": "Cinematic reveal",
+"hero_animation": "3D floating objects and dynamic text transitions",
+"section_reveal": "Scroll-triggered animations",
+"timeline_animation": "Progressive career journey animation",
+"skills_animation": "Interactive skill visualization",
+"project_animation": "3D project showcase cards",
+"achievement_animation": "Animated counters and spotlight effects",
+"contact_animation": "Interactive communication hub",
+"performance_optimized": true
+},
+
+"website_structure": {
+"landing_section": {
+"purpose": "Create a powerful first impression",
+"elements": [
+"Professional photo",
+"Animated name reveal",
+"Dynamic role switcher",
+"Personal tagline",
+"3D background scene",
+"Call-to-action buttons",
+"Social links"
+]
+},
+
+```
+"about_section": {
+  "include": [
+    "Personal story",
+    "Professional journey",
+    "Mission",
+    "Vision",
+    "Core values",
+    "Career objectives"
+  ]
+},
+
+"education_section": {
+  "extract_from_cv": true,
+  "display": "Interactive academic timeline"
+},
+
+"skills_section": {
+  "categorize": [
+    "Programming Languages",
+    "Frontend Development",
+    "Backend Development",
+    "Databases",
+    "Cloud & DevOps",
+    "AI & Machine Learning",
+    "Tools & Technologies",
+    "Design Skills",
+    "Soft Skills"
+  ],
+  "display": "Animated skill visualization"
+},
+
+"experience_section": {
+  "display": "Interactive career journey timeline",
+  "include": [
+    "Internships",
+    "Freelancing",
+    "Leadership Roles",
+    "Professional Experience"
+  ]
+},
+
+"projects_section": {
+  "display_style": "3D project gallery",
+  "include": [
+    "Project images",
+    "Project descriptions",
+    "Technologies used",
+    "Challenges solved",
+    "Achievements",
+    "Live links",
+    "GitHub links"
+  ],
+  "filters": [
+    "Frontend",
+    "Backend",
+    "Full Stack",
+    "AI",
+    "Mobile",
+    "Research",
+    "Hackathon"
+  ]
+},
+
+"achievements_section": {
+  "highlight": [
+    "Awards",
+    "Hackathons",
+    "Competitions",
+    "Recognitions",
+    "Academic achievements",
+    "Professional accomplishments"
+  ],
+  "display": "Interactive achievement wall"
+},
+
+"certifications_section": {
+  "display": "Premium certification showcase"
+},
+
+"leadership_section": {
+  "include": [
+    "Leadership roles",
+    "Community contributions",
+    "Event organization",
+    "Mentoring activities"
+  ]
+},
+
+"publications_section": {
+  "include_if_available": true
+},
+
+"testimonials_section": {
+  "generate_placeholder": true
+},
+
+"personal_interests_section": {
+  "include": [
+    "Interests",
+    "Hobbies",
+    "Passions",
+    "Future goals"
+  ]
+},
+
+"contact_section": {
+  "elements": [
+    "Contact form",
+    "Email",
+    "Phone",
+    "LinkedIn",
+    "GitHub",
+    "Instagram",
+    "Location"
+  ]
+}
+```
+
+},
+
+"content_generation_rules": {
+"never_invent_information": true,
+"use_cv_as_primary_source": true,
+"improve_wording_professionally": true,
+"highlight_unique_strengths": true,
+"focus_on_personal_branding": true,
+"showcase_quantifiable_achievements": true,
+"transform_resume_bullets_into_storytelling_content": true
+},
+
+"technical_requirements": {
+"seo_optimized": true,
+"performance_optimized": true,
+"mobile_first": true,
+"lazy_loading": true,
+"code_splitting": true,
+"smooth_animations": true,
+"modern_web_standards": true,
+"accessibility": "WCAG compliant"
+},
+
+"deliverables": {
+"required": [
+"Complete website architecture",
+"Complete UI/UX design",
+"Full content generation",
+"Animation strategy",
+"Color palette",
+"Typography system",
+"Component structure",
+"Responsive layouts",
+"Motion design specifications",
+"SEO metadata",
+"Personal branding strategy"
+]
+},
+
+"final_instruction": "Create the most impressive, premium, futuristic, highly personalized portfolio website possible. Make visitors instantly understand who this person is, what they have achieved, what they are capable of, and why they stand out. The final result should feel like a flagship personal brand website built by a top-tier design agency."
+}
