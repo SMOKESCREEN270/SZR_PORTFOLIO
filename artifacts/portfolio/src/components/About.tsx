@@ -13,7 +13,7 @@ const stagger = {
 
 export function About() {
   return (
-    <section id="about" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="about" className="pt-6 pb-12 md:pt-8 md:pb-16 relative overflow-hidden">
       <div className="container px-5 mx-auto">
         <motion.div
           variants={stagger}

@@ -21,7 +21,7 @@ export function Hero({ onOpenCVModal }: Props) {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-16 md:pt-20 overflow-hidden">
+    <section id="home" className="relative pt-24 md:pt-32 pb-6 md:pb-10 overflow-hidden">
       {/* Particle background */}
       <div className="absolute inset-0 z-0">
         <Particles
