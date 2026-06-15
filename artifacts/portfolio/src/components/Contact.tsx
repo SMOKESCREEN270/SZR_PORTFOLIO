@@ -3,6 +3,16 @@ import { Mail, Phone, Linkedin, Github, Send } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
+
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+
 export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -10,7 +20,6 @@ export function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
       toast({
@@ -21,112 +30,128 @@ export function Contact() {
     }, 1500);
   };
 
+  const contactLinks = [
+    {
+      href: "mailto:shaikhzaidrahman10b@gmail.com",
+      icon: <Mail size={18} />,
+      label: "Email",
+      value: "shaikhzaidrahman10b@gmail.com",
+      external: false,
+    },
+    {
+      href: "https://wa.me/916290575310",
+      icon: <Phone size={18} />,
+      label: "WhatsApp",
+      value: "+91 6290575310",
+      external: true,
+    },
+  ];
+
   return (
-    <section id="contact" className="py-24 relative border-t border-white/5">
-      <div className="container px-6 mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+    <section id="contact" className="py-16 md:py-24 relative border-t border-white/5">
+      <div className="container px-5 mx-auto">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 max-w-6xl mx-auto">
+
+          {/* Left — contact info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
           >
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">Initialize<br/><span className="text-cyan-400">Connection</span></h2>
-            <p className="text-white/60 text-lg mb-12 max-w-md">
+            <motion.h2 variants={fadeUp} className="text-2xl sm:text-3xl md:text-5xl font-display font-bold mb-4 md:mb-6">
+              Initialize<br /><span className="text-cyan-400">Connection</span>
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-white/60 text-sm md:text-lg mb-8 md:mb-12 max-w-md leading-relaxed">
               Currently open for freelance opportunities, hackathon collaborations, and innovative AI engineering roles. Let's build the future together.
-            </p>
+            </motion.p>
 
-            <div className="space-y-6">
-              <a href="mailto:shaikhzaidrahman10b@gmail.com" className="flex items-center gap-4 text-white/80 hover:text-cyan-400 transition-colors group p-4 glass rounded-xl">
-                <div className="w-12 h-12 bg-cyan-500/10 rounded-full flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <div className="text-sm text-white/50 mb-1">Email</div>
-                  <div className="font-medium">shaikhzaidrahman10b@gmail.com</div>
-                </div>
-              </a>
-              
-              <a href="https://wa.me/916290575310" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-white/80 hover:text-cyan-400 transition-colors group p-4 glass rounded-xl">
-                <div className="w-12 h-12 bg-cyan-500/10 rounded-full flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
-                  <Phone size={20} />
-                </div>
-                <div>
-                  <div className="text-sm text-white/50 mb-1">WhatsApp</div>
-                  <div className="font-medium">+91 6290575310</div>
-                </div>
-              </a>
+            <motion.div variants={stagger} className="space-y-3 md:space-y-4">
+              {contactLinks.map((link) => (
+                <motion.a
+                  key={link.label}
+                  variants={fadeUp}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noreferrer" : undefined}
+                  className="flex items-center gap-3 md:gap-4 text-white/80 hover:text-cyan-400 active:scale-[0.98] transition-all group p-3 md:p-4 glass rounded-xl"
+                >
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-cyan-500/10 rounded-full flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors shrink-0">
+                    {link.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs text-white/50 mb-0.5">{link.label}</div>
+                    <div className="font-medium text-sm md:text-base truncate">{link.value}</div>
+                  </div>
+                </motion.a>
+              ))}
 
-              <div className="flex gap-4 pt-4">
-                <a 
-                  href="https://linkedin.com/in/shaikhzaidrahman" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="w-12 h-12 glass rounded-full flex items-center justify-center text-white/80 hover:text-cyan-400 hover:border-cyan-400/50 transition-all hover:-translate-y-1"
-                >
-                  <Linkedin size={20} />
-                </a>
-                <a 
-                  href="https://github.com/shaikhzaidrahman" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="w-12 h-12 glass rounded-full flex items-center justify-center text-white/80 hover:text-cyan-400 hover:border-cyan-400/50 transition-all hover:-translate-y-1"
-                >
-                  <Github size={20} />
-                </a>
-              </div>
-            </div>
+              <motion.div variants={fadeUp} className="flex gap-3 pt-3">
+                {[
+                  { href: "https://linkedin.com/in/shaikhzaidrahman", icon: <Linkedin size={18} />, label: "LinkedIn" },
+                  { href: "https://github.com/shaikhzaidrahman", icon: <Github size={18} />, label: "GitHub" },
+                ].map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={social.label}
+                    className="w-11 h-11 md:w-12 md:h-12 glass rounded-full flex items-center justify-center text-white/80 hover:text-cyan-400 hover:border-cyan-400/50 active:scale-95 transition-all hover:-translate-y-1"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </motion.div>
+            </motion.div>
           </motion.div>
 
+          {/* Right — contact form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="glass p-8 rounded-2xl border-white/10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="glass p-6 md:p-8 rounded-2xl border-white/10"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <label htmlFor="name" className="text-sm text-white/60 font-medium">Identifier</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  required
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors"
-                  placeholder="John Doe"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm text-white/60 font-medium">Return Address</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  required
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors"
-                  placeholder="john@example.com"
-                />
-              </div>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {[
+                { id: "name", label: "Identifier", type: "text", placeholder: "John Doe" },
+                { id: "email", label: "Return Address", type: "email", placeholder: "john@example.com" },
+              ].map((field) => (
+                <div key={field.id} className="space-y-1.5">
+                  <label htmlFor={field.id} className="text-xs md:text-sm text-white/60 font-medium block">{field.label}</label>
+                  <input
+                    type={field.type}
+                    id={field.id}
+                    required
+                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+                    placeholder={field.placeholder}
+                  />
+                </div>
+              ))}
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm text-white/60 font-medium">Payload</label>
-                <textarea 
-                  id="message" 
+              <div className="space-y-1.5">
+                <label htmlFor="message" className="text-xs md:text-sm text-white/60 font-medium block">Payload</label>
+                <textarea
+                  id="message"
                   required
                   rows={4}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors resize-none"
+                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors resize-none"
                   placeholder="Enter message coordinates..."
                 />
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-white text-black font-semibold rounded-xl py-4 flex items-center justify-center gap-2 hover:bg-cyan-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="w-full bg-white text-black font-semibold rounded-xl py-3.5 flex items-center justify-center gap-2 hover:bg-cyan-400 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
               >
                 {isSubmitting ? (
                   <span className="animate-pulse">Transmitting...</span>
                 ) : (
                   <>
-                    Transmit <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                    Transmit <Send size={16} className="group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
               </button>
