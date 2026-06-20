@@ -11,7 +11,7 @@ const projects = [
     description:
       "AI-driven drug toxicity screening tool predicting toxicity across 12 biological assays (Tox21 dataset). Achieved average AUC-ROC of 0.797 with SHAP-based explainability.",
     impact: "Helps pharmaceutical researchers filter unsafe drug candidates early, reducing costly failures.",
-    accent: "from-cyan-500/20 to-blue-500/10",
+    accent: "from-primary/20 to-primary/5",
   },
   {
     title: "PulseIQ (SmartMill)",
@@ -22,7 +22,7 @@ const projects = [
     description:
       "Camera-based advisory system for dal milling units using lightweight on-device image classification. Iterated through 4 major product versions with direct farmer feedback.",
     impact: "Helps small/mid-sized mills reduce grain wastage and improve output quality.",
-    accent: "from-purple-500/20 to-pink-500/10",
+    accent: "from-primary/20 to-accent/10",
   },
   {
     title: "Prompt Wars — 1st Prize",
@@ -33,7 +33,7 @@ const projects = [
     description:
       "Won 1st Prize by crafting precision-engineered prompts that achieved exact expected results. Demonstrated iterative refinement and output formatting specifications.",
     impact: "Mastery of advanced LLM interaction and steering — a rare, high-value skill.",
-    accent: "from-yellow-500/20 to-orange-500/10",
+    accent: "from-accent/20 to-accent/5",
   },
 ];
 
@@ -58,8 +58,8 @@ export function Projects() {
           transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-display font-bold mb-3">Deployed_Systems</h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-sm md:text-base">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-display font-bold mb-3">Projects</h2>
+          <p className="text-white/40 max-w-2xl mx-auto text-sm md:text-base">
             Production-grade applications and hackathon-winning architectures.
           </p>
         </motion.div>
@@ -69,16 +69,16 @@ export function Projects() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.08 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
         >
           {projects.map((project, i) => (
             <motion.div
               key={i}
               variants={cardVariant}
-              className="glass rounded-2xl overflow-hidden flex flex-col border-white/10 hover:border-cyan-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(34,211,238,0.08)] active:scale-[0.99]"
+              className="glass rounded-2xl overflow-hidden flex flex-col hover:border-primary/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_-12px_hsl(195_80%_55%/0.1)] group"
             >
               {/* Image */}
-              <div className="relative aspect-video overflow-hidden bg-white/5">
+              <div className="relative aspect-video overflow-hidden bg-white/[0.02]">
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} z-10`} />
                 <img
                   src={project.image}
@@ -87,25 +87,25 @@ export function Projects() {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute top-3 left-3 z-20 glass px-2.5 py-1 rounded-full text-[10px] md:text-xs font-semibold text-white/90 flex items-center gap-1.5">
-                  <Trophy size={10} className="text-yellow-400" />
+                <div className="absolute top-3 left-3 z-20 glass px-2.5 py-1 rounded-full text-[10px] md:text-xs font-semibold text-white/80 flex items-center gap-1.5">
+                  <Trophy size={10} className="text-accent" />
                   {project.event}
                 </div>
               </div>
 
               {/* Body */}
               <div className="p-5 md:p-6 flex-1 flex flex-col">
-                <h3 className="text-base md:text-xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-xs md:text-sm text-white/70 mb-4 flex-1 leading-relaxed">{project.description}</p>
+                <h3 className="text-base md:text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+                <p className="text-xs md:text-sm text-white/50 mb-4 flex-1 leading-relaxed">{project.description}</p>
 
-                <div className="mb-4 p-3 bg-cyan-500/5 border border-cyan-500/10 rounded-xl">
-                  <span className="text-[10px] md:text-xs font-semibold text-cyan-400 uppercase tracking-wider block mb-1">Impact</span>
-                  <span className="text-xs md:text-sm text-white/80 leading-snug">{project.impact}</span>
+                <div className="mb-4 p-3 bg-primary/[0.04] border border-primary/10 rounded-xl">
+                  <span className="text-[10px] md:text-xs font-semibold text-primary/80 uppercase tracking-wider block mb-1">Impact</span>
+                  <span className="text-xs md:text-sm text-white/70 leading-snug">{project.impact}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-1.5 md:gap-2">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="text-[10px] md:text-xs bg-white/5 text-white/60 px-2 py-1 rounded">
+                    <span key={tag} className="text-[10px] md:text-xs bg-white/[0.04] text-white/50 px-2.5 py-1 rounded-md border border-white/[0.06]">
                       {tag}
                     </span>
                   ))}

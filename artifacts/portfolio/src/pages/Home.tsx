@@ -8,15 +8,13 @@ import { Skills } from "@/components/Skills";
 import { Certifications } from "@/components/Certifications";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { CustomCursor } from "@/components/CustomCursor";
 import { CVDownloadModal } from "@/components/CVDownloadModal";
 
 export default function Home() {
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
   return (
-    <main className="bg-background min-h-screen text-foreground selection:bg-cyan-500/30">
-      <CustomCursor />
+    <main className="bg-background min-h-screen text-foreground">
       <Navbar onOpenCVModal={() => setIsCVModalOpen(true)} />
       <Hero onOpenCVModal={() => setIsCVModalOpen(true)} />
       <About />

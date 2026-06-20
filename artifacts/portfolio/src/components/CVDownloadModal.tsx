@@ -28,7 +28,6 @@ const REASONS = [
   "Academic Research",
   "Business Partnership",
   "General Interest / Networking",
-  "Other",
 ];
 
 const EMPTY: FormData = {
@@ -101,7 +100,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
     setErrors((prev) => ({ ...prev, [field]: validate(form)[field] }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const allTouched = Object.keys(EMPTY).reduce((acc, k) => ({ ...acc, [k]: true }), {});
     setTouched(allTouched);
@@ -110,14 +109,33 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
     if (Object.keys(errs).length > 0) return;
 
     setStatus("submitting");
-    setTimeout(() => {
+
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSee9VVOzu7RUjHQt9HFX3Lb7CdxiNujm-hn_90uWRDaeGJIOg/formResponse";
+
+    const params = new URLSearchParams();
+    params.append("entry.1156737822", form.fullName);
+    params.append("entry.1343392693", form.organization);
+    params.append("entry.11226929", form.linkedin);
+    params.append("entry.1093058195", form.mobile);
+    params.append("entry.1382018376", form.email);
+    
+    // Map "Business Partnership" to "Business Patnership" (matching typo in Google Form)
+    const reasonValue = form.reason === "Business Partnership" ? "Business Patnership" : form.reason;
+    params.append("entry.1417674768", reasonValue);
+
+    try {
+      await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params.toString(),
+      });
+
       setStatus("success");
-      const a = document.createElement("a");
-      a.href = "/zaid-rahman-cv.pdf";
-      a.download = "Shaikh_Zaid_Rahman_CV.pdf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      window.open("https://drive.google.com/file/d/14pl0n78jE_hCWbqgzO2Pw64kyIEMv-Bi/view?usp=sharing", "_blank");
+
       setTimeout(() => {
         onClose();
         setForm(EMPTY);
@@ -125,14 +143,27 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
         setTouched({});
         setStatus("idle");
       }, 1800);
-    }, 1200);
+    } catch (err) {
+      console.error("Form submission failed", err);
+      // Resilient fallback: open Drive link anyway
+      setStatus("success");
+      window.open("https://drive.google.com/file/d/14pl0n78jE_hCWbqgzO2Pw64kyIEMv-Bi/view?usp=sharing", "_blank");
+
+      setTimeout(() => {
+        onClose();
+        setForm(EMPTY);
+        setErrors({});
+        setTouched({});
+        setStatus("idle");
+      }, 1800);
+    }
   };
 
   const fieldClass = (field: keyof FormData) =>
     `w-full bg-black/30 border rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none transition-colors text-sm ${
       touched[field] && errors[field]
         ? "border-red-500/70 focus:border-red-400"
-        : "border-white/10 focus:border-cyan-400"
+        : "border-white/10 focus:border-accent"
     }`;
 
   return (
@@ -172,8 +203,8 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
 
                 <div className="mb-6">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-full bg-cyan-500/15 flex items-center justify-center">
-                      <Download size={18} className="text-cyan-400" />
+                    <div className="w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center">
+                      <Download size={18} className="text-accent" />
                     </div>
                     <h2 className="text-xl font-display font-bold text-white">Download CV</h2>
                   </div>
@@ -185,7 +216,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
                 <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                   <div>
                     <label className="block text-xs text-white/50 font-medium mb-1.5 uppercase tracking-wider">
-                      Full Name <span className="text-cyan-400">*</span>
+                      Full Name <span className="text-accent">*</span>
                     </label>
                     <input
                       type="text"
@@ -203,7 +234,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
 
                   <div>
                     <label className="block text-xs text-white/50 font-medium mb-1.5 uppercase tracking-wider">
-                      Company / Organization / Institution <span className="text-cyan-400">*</span>
+                      Company / Organization / Institution <span className="text-accent">*</span>
                     </label>
                     <input
                       type="text"
@@ -221,7 +252,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
 
                   <div>
                     <label className="block text-xs text-white/50 font-medium mb-1.5 uppercase tracking-wider">
-                      LinkedIn Profile URL <span className="text-cyan-400">*</span>
+                      LinkedIn Profile URL <span className="text-accent">*</span>
                     </label>
                     <input
                       type="url"
@@ -239,7 +270,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
 
                   <div>
                     <label className="block text-xs text-white/50 font-medium mb-1.5 uppercase tracking-wider">
-                      Mobile Number <span className="text-cyan-400">*</span>
+                      Mobile Number <span className="text-accent">*</span>
                     </label>
                     <input
                       type="tel"
@@ -257,7 +288,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
 
                   <div>
                     <label className="block text-xs text-white/50 font-medium mb-1.5 uppercase tracking-wider">
-                      Gmail Address <span className="text-cyan-400">*</span>
+                      Gmail Address <span className="text-accent">*</span>
                     </label>
                     <input
                       type="email"
@@ -275,7 +306,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
 
                   <div>
                     <label className="block text-xs text-white/50 font-medium mb-1.5 uppercase tracking-wider">
-                      Reason for Downloading <span className="text-cyan-400">*</span>
+                      Reason for Downloading <span className="text-accent">*</span>
                     </label>
                     <select
                       value={form.reason}
@@ -285,7 +316,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
                       data-testid="select-cv-reason"
                     >
                       {REASONS.map((r) => (
-                        <option key={r} value={r === "Select a reason..." ? "" : r} className="bg-[#0a0f1e] text-white">
+                        <option key={r} value={r === "Select a reason..." ? "" : r} className="bg-background text-foreground">
                           {r}
                         </option>
                       ))}
@@ -298,7 +329,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="w-full mt-2 bg-white text-black font-semibold rounded-xl py-3.5 flex items-center justify-center gap-2 hover:bg-cyan-400 transition-colors disabled:opacity-60 disabled:cursor-not-allowed group"
+                    className="w-full mt-2 bg-white text-black font-semibold rounded-xl py-3.5 flex items-center justify-center gap-2 hover:bg-accent hover:text-accent-foreground transition-all disabled:opacity-60 disabled:cursor-not-allowed group"
                     data-testid="button-cv-submit"
                   >
                     {status === "submitting" ? (
@@ -326,7 +357,7 @@ export function CVDownloadModal({ isOpen, onClose }: Props) {
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", damping: 12, stiffness: 200, delay: 0.1 }}
                 >
-                  <CheckCircle2 size={56} className="text-cyan-400 mb-4" />
+                  <CheckCircle2 size={56} className="text-accent mb-4" />
                 </motion.div>
                 <h3 className="text-2xl font-display font-bold text-white mb-2">Download Started</h3>
                 <p className="text-white/50 text-sm">Thanks — your download of Zaid's CV has begun.</p>
